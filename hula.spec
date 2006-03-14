@@ -50,7 +50,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -D %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/hula
+#install -D %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/hula
 
 # remove all .la files
 rm -f $RPM_BUILD_ROOT%{_libdir}/connmgr/*.la \
@@ -88,7 +88,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc HACKING TODO AUTHORS README style-guide.html
-%attr(754,root,root) /etc/rc.d/init.d/hula
+#%attr(754,root,root) /etc/rc.d/init.d/hula
 %attr(755,root,root) %{_bindir}/hulasqlite
 %attr(755,root,root) %{_bindir}/mwcomp
 %attr(755,root,root) %{_sbindir}/hulaavirus
@@ -257,3 +257,120 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/modweb/libmwpref.a
 %dir %{_libdir}/webadmin
 %{_libdir}/webadmin/9stats.wat
+
+# unpackaged:
+%if 0
+%{_includedir}/hula/calcmd.h
+%{_includedir}/hula/hulaagent.h
+%{_includedir}/hula/hulacheck.h
+%{_includedir}/hula/hulathreadpool.h
+%{_includedir}/hula/libical/ical.h
+%{_includedir}/hula/libical/icalarray.h
+%{_includedir}/hula/libical/icalattach.h
+%{_includedir}/hula/libical/icalcalendar.h
+%{_includedir}/hula/libical/icalclassify.h
+%{_includedir}/hula/libical/icalcluster.h
+%{_includedir}/hula/libical/icalcomponent.h
+%{_includedir}/hula/libical/icalderivedparameter.h
+%{_includedir}/hula/libical/icalderivedproperty.h
+%{_includedir}/hula/libical/icalderivedvalue.h
+%{_includedir}/hula/libical/icaldirset.h
+%{_includedir}/hula/libical/icaldirsetimpl.h
+%{_includedir}/hula/libical/icalduration.h
+%{_includedir}/hula/libical/icalenums.h
+%{_includedir}/hula/libical/icalerror.h
+%{_includedir}/hula/libical/icalfileset.h
+%{_includedir}/hula/libical/icalfilesetimpl.h
+%{_includedir}/hula/libical/icalgauge.h
+%{_includedir}/hula/libical/icalgaugeimpl.h
+%{_includedir}/hula/libical/icallangbind.h
+%{_includedir}/hula/libical/icalmemory.h
+%{_includedir}/hula/libical/icalmessage.h
+%{_includedir}/hula/libical/icalmime.h
+%{_includedir}/hula/libical/icalparameter.h
+%{_includedir}/hula/libical/icalparser.h
+%{_includedir}/hula/libical/icalperiod.h
+%{_includedir}/hula/libical/icalproperty.h
+%{_includedir}/hula/libical/icalrecur.h
+%{_includedir}/hula/libical/icalrestriction.h
+%{_includedir}/hula/libical/icalset.h
+%{_includedir}/hula/libical/icalspanlist.h
+%{_includedir}/hula/libical/icalss.h
+%{_includedir}/hula/libical/icalssyacc.h
+%{_includedir}/hula/libical/icaltime.h
+%{_includedir}/hula/libical/icaltimezone.h
+%{_includedir}/hula/libical/icaltypes.h
+%{_includedir}/hula/libical/icalvalue.h
+%{_includedir}/hula/libical/icalvcal.h
+%{_includedir}/hula/libical/port.h
+%{_includedir}/hula/libical/pvl.h
+%{_includedir}/hula/libical/sspm.h
+%{_includedir}/hula/libical/vcaltmp.h
+%{_includedir}/hula/libical/vcc.h
+%{_includedir}/hula/libical/vobject.h
+%{_includedir}/hula/libical2.h
+%{_includedir}/hula/log4c.h
+%{_includedir}/hula/log4c/appender.h
+%{_includedir}/hula/log4c/appender_type_mmap.h
+%{_includedir}/hula/log4c/appender_type_stream.h
+%{_includedir}/hula/log4c/appender_type_stream2.h
+%{_includedir}/hula/log4c/appender_type_syslog.h
+%{_includedir}/hula/log4c/buffer.h
+%{_includedir}/hula/log4c/category.h
+%{_includedir}/hula/log4c/defs.h
+%{_includedir}/hula/log4c/init.h
+%{_includedir}/hula/log4c/layout.h
+%{_includedir}/hula/log4c/layout_type_basic.h
+%{_includedir}/hula/log4c/layout_type_dated.h
+%{_includedir}/hula/log4c/location_info.h
+%{_includedir}/hula/log4c/logging_event.h
+%{_includedir}/hula/log4c/priority.h
+%{_includedir}/hula/log4c/rc.h
+%{_includedir}/hula/log4c/version.h
+%{_libdir}/hula/Hula.Sharp.dll
+%{_libdir}/hula/Hula.Sharp.dll.mdb
+%{_libdir}/hula/HulaIndexer.exe
+%{_libdir}/hula/HulaIndexer.exe.config
+%{_libdir}/hula/HulaIndexer.exe.mdb
+%{_libdir}/hula/HulaWeb.exe
+%{_libdir}/hula/HulaWeb.exe.config
+%{_libdir}/hula/HulaWeb.exe.mdb
+%{_libdir}/hula/Lucene.Net.dll
+%{_libdir}/hula/Mono.WebServer.dll
+%{_libdir}/hula/calcmd/bin/Hula.CalCmd.dll
+%{_libdir}/hula/calcmd/bin/Hula.CalCmd.dll.mdb
+%{_libdir}/hula/calcmd/web.config
+%{_libdir}/hula/dav/bin/Hula.Dav.dll
+%{_libdir}/hula/dav/bin/Hula.Dav.dll.mdb
+%{_libdir}/hula/dav/bin/Lucene.Net.dll
+%{_libdir}/hula/dav/bin/Mono.WebServer.dll
+%{_libdir}/hula/dav/bin/log4net.dll
+%{_libdir}/hula/dav/web.config
+%{_libdir}/hula/hulamonohelper
+%{_libdir}/hula/import/bin/Hula.Import.dll
+%{_libdir}/hula/import/bin/Hula.Import.dll.mdb
+%{_libdir}/hula/import/web.config
+%{_libdir}/hula/log4net.dll
+%{_libdir}/hula/queue/bin/Hula.Queue.dll
+%{_libdir}/hula/queue/bin/Hula.Queue.dll.mdb
+%{_libdir}/hula/queue/web.config
+%{_libdir}/hula/search/bin/Hula.Search.dll
+%{_libdir}/hula/search/bin/Hula.Search.dll.mdb
+%{_libdir}/hula/search/web.config
+%attr(755,root,root) %{_libdir}/libhulacalcmd.so.0.0.0
+%attr(755,root,root) %{_libdir}/libhulalog4c.so.0.0.0
+%attr(755,root,root) %{_libdir}/libical-hula.so.0.0.0
+%attr(755,root,root) %{_libdir}/libicalss-hula.so.0.0.0
+%attr(755,root,root) %{_libdir}/libicalvcal-hula.so.0.0.0
+%{_libdir}/libhulacalcmd.a
+%{_libdir}/libhulalog4c.a
+%{_pkgconfigdir}/hula-sharp.pc
+%attr(755,root,root) %{_sbindir}/hulaadmin
+%attr(755,root,root) %{_sbindir}/hulabackup
+%attr(755,root,root) %{_sbindir}/hulacalcmd
+%attr(755,root,root) %{_sbindir}/hulaindexer
+%attr(755,root,root) %{_sbindir}/hulaqueue
+%attr(755,root,root) %{_sbindir}/hulaweb
+%attr(755,root,root) %{_sbindir}/mdbtool
+%{_datadir}/hula/zoneinfo
+%endif
