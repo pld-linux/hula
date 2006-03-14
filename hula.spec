@@ -1,3 +1,5 @@
+# TODO
+# - register uid in PLD-doc/uid_gid.db.txt and use it
 Summary:	A calendar and mail server
 Name:		hula
 Version:	r1164
@@ -12,6 +14,12 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	openssl-devel
+BuildRequires:	rpmbuild(macros) >= 1.268
+Requires(post,postun):	/sbin/ldconfig
+Requires(postun):	/usr/sbin/userdel
+Requires(pre):	/bin/id
+Requires(pre):	/usr/sbin/useradd
+Provides:	user(hula)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -32,45 +40,47 @@ add-ons for hula.
 %setup -q
 
 %build
-./autogen.sh --with-user=hula
+./autogen.sh \
+	--with-user=hula
 %configure
-%{__make} %{?_smp_mflags}
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+install -D %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/hula
+
 # remove all .la files
-/bin/rm -rf $RPM_BUILD_ROOT%{_libdir}/connmgr/*.la \
+rm -f $RPM_BUILD_ROOT%{_libdir}/connmgr/*.la \
 	    $RPM_BUILD_ROOT%{_libdir}/hulamdb/*.la \
 	    $RPM_BUILD_ROOT%{_libdir}/*.la \
 	    $RPM_BUILD_ROOT%{_libdir}/modweb/*.la
 
 # remove empty or irrelevant doco
-for foo in ChangeLog INSTALL NEWS; do
-  /bin/rm -rf $RPM_BUILD_ROOT/$foo
-done
-
-install -D %{SOURCE1} -D $RPM_BUILD_ROOT/%{_sysconfdir}/rc.d/init.d/hula
-
-%post
-/sbin/ldconfig
-if [ $1 = 1 ]; then
-  /sbin/chkconfig --add hula
-fi
+rm -f $RPM_BUILD_ROOT/{ChangeLog,INSTALL,NEWS}
 
 %pre
 # Create system user for hula
-/usr/sbin/useradd -c "Hula" -s /sbin/nologin -r hula 2> /dev/null || :
+# TODO: use specific uid
+%useradd -c "Hula" -s /sbin/nologin -r hula
+
+%post
+/sbin/ldconfig
+/sbin/chkconfig --add hula
 
 %preun
-if [ $1 -eq 0 ]; then
-  /sbin/service hula stop >/dev/null 2>&1 ||:
-  /sbin/chkconfig --del hula
+if [ "$1" -eq 0 ]; then
+	%service hula stop
+	/sbin/chkconfig --del hula
 fi
 
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig
+if [ "$1" = "0" ]; then
+	%userremove lula
+fi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
