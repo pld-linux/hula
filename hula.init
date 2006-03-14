@@ -1,0 +1,390 @@
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Fedora Project CVS Repositories - log - extras: devel/hula/hula.init</title>
+<meta name="generator" content="ViewCVS 1.0-dev">
+<link rel="stylesheet" href="/viewcvs-doc//styles.css" type="text/css">
+<style type="text/css" media="screen">
+</style>
+<meta http-equiv="Content-Type" content="text/html">
+<link rel="stylesheet" type="text/css" media="print" href="http://fedora.redhat.com/css/print.css">
+<style type="text/css" media="screen">
+@import url("http://fedora.redhat.com/css/layout.css");
+@import url("http://fedora.redhat.com/css/content.css");
+@import url("http://fedora.redhat.com/css/docbook.css");
+#fedora-content pre {
+font-family: monospace;
+font-size: medium;
+margin: 2em 0;
+/*
+overflow: auto;
+*/
+overflow: hidden;
+}
+#fedora-content pre a {
+text-decoration: none;
+}
+#fedora-content pre a:hover {
+text-decoration: underline;
+}
+#fedora-content pre:first-line {
+color: #999;
+text-decoration: underline;
+}
+#fedora-content hr {
+height: 0px;
+border: 0px;
+}
+</style>
+<meta name="MSSmartTagsPreventParsing" content="TRUE">
+<link rel="shortcut icon" href="http://fedora.redhat.com/images/favicon.ico">
+<link rel="icon" href="http://fedora.redhat.com/images/favicon.ico">
+</head>
+<body>
+<!-- header BEGIN -->
+<div id="fedora-header">
+<div id="fedora-header-logo">
+<a href="http://fedora.redhat.com/"><img src="http://fedora.redhat.com/images/header-fedora_logo.png" alt="Fedora Project"></a>
+</div>
+<div id="fedora-header-items">
+<span class="fedora-header-icon">
+<a href="http://fedora.redhat.com/download/"><img src="http://fedora.redhat.com/images/header-download.png" alt=" ">Download</a>
+<a href="http://fedora.redhat.com/projects/"><img src="http://fedora.redhat.com/images/header-projects.png" alt=" ">Projects</a>
+<a href="http://fedora.redhat.com/about/faq/"><img src="http://fedora.redhat.com/images/header-faq.png" alt=" ">FAQ</a>
+</span>
+</div>
+</div>
+<div id="fedora-nav"></div>
+<!-- header END -->
+<!-- leftside BEGIN -->
+<div id="fedora-side-left">
+<div id="fedora-side-nav-label">Site Navigation:</div>
+<ul id="fedora-side-nav">
+<li><a href="http://fedora.redhat.com/">Home</a></li>
+<li><a href="http://fedora.redhat.com/download/">Download</a>
+<ul>
+<li><a href="http://download.fedora.redhat.com/">Download Server</a></li>
+<li><strong><a href="http://cvs.fedora.redhat.com/">CVS Server</a></strong></li>
+<li><a href="http://fedora.redhat.com/download/updates.html">Updates</a></li>
+<li><a href="http://fedora.redhat.com/download/mirrors.html">Mirrors</a></li>
+</ul>
+</li>
+<li><a href="http://fedora.redhat.com/docs/">Docs</a></li>
+<li><a href="http://fedora.redhat.com/projects/">Projects</a></li>
+<li><a href="http://fedora.redhat.com/participate/">Participate</a></li>
+<li><a href="http://fedora.redhat.com/about/">About</a></li>
+</ul>
+</div>
+<!-- leftside END -->
+<!-- content BEGIN -->
+<div id="fedora-middle-two">
+<div class="fedora-corner-tr">&nbsp;</div>
+<div class="fedora-corner-tl">&nbsp;</div>
+<div id="fedora-content">
+<div class="vc_navheader">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td align="left"><b><a href="/viewcvs/?root=extras#dirlist">[extras]</a> / <a href="/viewcvs/devel/?root=extras#dirlist">devel</a> / <a href="/viewcvs/devel/hula/?root=extras#dirlist">hula</a> / <a href="/viewcvs/devel/hula/hula.init?root=extras">hula.init</a></b></td>
+<td align="right">
+
+<form method=get action="/viewcvs/">
+
+<b>Project Root:</b>
+<select name="root" onchange="submit()">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<optgroup label="CVS Repositories"><option>core</option><option>dirsec</option><option>docs</option><option selected>extras</option><option>fedora</option></optgroup>
+
+
+</select>
+<input type=submit value="Go">
+</form>
+
+</td>
+</tr>
+</table>
+</div>
+<h2>extras: devel/hula/hula.init</h2>
+
+<hr noshade>
+<p>Default branch: MAIN<br>
+Bookmark a link to HEAD:
+(<a href="/viewcvs/devel/hula/hula.init?root=extras&amp;view=markup">view</a>)
+(<a href="/viewcvs/*checkout*/devel/hula/hula.init?root=extras">download</a>)
+
+</p>
+
+
+
+ 
+
+
+
+<hr size=1 noshade>
+
+
+<a name="rev1.1"></a>
+<a name="FC-4-split"></a>
+<a name="hula-r178-2"></a>
+<a name="hula-r178-1"></a>
+<a name="hula-r261-1"></a>
+<a name="hula-r200-1"></a>
+<a name="hula-r186-1"></a>
+<a name="HEAD"></a>
+
+
+Revision <b>1.1</b>
+ -
+(<a href="/viewcvs/devel/hula/hula.init?root=extras&amp;rev=1.1&amp;view=markup">view</a>)
+(<a href="/viewcvs/*checkout*/devel/hula/hula.init?root=extras&amp;rev=1.1">download</a>)
+
+
+(<a href="/viewcvs/devel/hula/hula.init?annotate=1.1&amp;root=extras">annotate</a>)
+
+
+- <a href="/viewcvs/devel/hula/hula.init?root=extras&amp;rev=1.1&amp;r1=1.1&amp;view=log">[select for diffs]</a>
+
+
+
+
+<br>
+
+<i>Tue Apr 12 22:54:32 2005 UTC</i> (11 months ago) by <i>iprone</i>
+
+<br>Branch:
+
+<a href="/viewcvs/devel/hula/hula.init?root=extras&amp;only_with_tag=MAIN"><b>MAIN</b></a>
+
+
+
+<br>CVS Tags:
+
+<a href="/viewcvs/devel/hula/hula.init?root=extras&amp;only_with_tag=FC-4-split"><b>FC-4-split</b></a>,
+
+<a href="/viewcvs/devel/hula/hula.init?root=extras&amp;only_with_tag=HEAD"><b>HEAD</b></a>,
+
+<a href="/viewcvs/devel/hula/hula.init?root=extras&amp;only_with_tag=hula-r178-1"><b>hula-r178-1</b></a>,
+
+<a href="/viewcvs/devel/hula/hula.init?root=extras&amp;only_with_tag=hula-r178-2"><b>hula-r178-2</b></a>,
+
+<a href="/viewcvs/devel/hula/hula.init?root=extras&amp;only_with_tag=hula-r186-1"><b>hula-r186-1</b></a>,
+
+<a href="/viewcvs/devel/hula/hula.init?root=extras&amp;only_with_tag=hula-r200-1"><b>hula-r200-1</b></a>,
+
+<a href="/viewcvs/devel/hula/hula.init?root=extras&amp;only_with_tag=hula-r261-1"><b>hula-r261-1</b></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<pre class="vc_log">auto-import hula-r178-1 on branch devel from hula-r178-1.src.rpm
+</pre>
+
+ 
+
+
+
+<a name="diff"></a>
+<hr noshade>
+This form allows you to request diffs between any two revisions of
+a file. You may select a symbolic revision name using the selection
+box or you may type in a numeric name using the type-in text box.
+<p>
+<form method="get" action="/viewcvs/devel/hula/hula.init" name="diff_select">
+<input type="hidden" name="root" value="extras" />
+<table border="0" cellpadding="2" cellspacing="0">
+<tr>
+<td>&nbsp;</td>
+<td>
+Diffs between
+
+<select name="r1">
+<option value="text" selected>Use Text Field</option>
+
+<option value="1.1:hula-r261-1">hula-r261-1</option>
+
+<option value="1.1:hula-r200-1">hula-r200-1</option>
+
+<option value="1.1:hula-r186-1">hula-r186-1</option>
+
+<option value="1.1:hula-r178-2">hula-r178-2</option>
+
+<option value="1.1:hula-r178-1">hula-r178-1</option>
+
+<option value="1.1:MAIN">MAIN</option>
+
+<option value="1.1:HEAD">HEAD</option>
+
+<option value="1.1:FC-4-split">FC-4-split</option>
+
+</select>
+<input type="text" size="12" name="tr1" value="1.1"
+onchange="document.diff_select.r1.selectedIndex=0">
+
+and
+
+<select name="r2">
+<option value="text" selected>Use Text Field</option>
+
+<option value="1.1:hula-r261-1">hula-r261-1</option>
+
+<option value="1.1:hula-r200-1">hula-r200-1</option>
+
+<option value="1.1:hula-r186-1">hula-r186-1</option>
+
+<option value="1.1:hula-r178-2">hula-r178-2</option>
+
+<option value="1.1:hula-r178-1">hula-r178-1</option>
+
+<option value="1.1:MAIN">MAIN</option>
+
+<option value="1.1:HEAD">HEAD</option>
+
+<option value="1.1:FC-4-split">FC-4-split</option>
+
+</select>
+<input type="text" size="12" name="tr2" value="1.1"
+onchange="document.diff_select.r1.selectedIndex=0">
+
+</td>
+</tr>
+<tr>
+<td><input type="checkbox" name="makepatch" id="makepatch" value="1"></td>
+<td><label for="makepatch">Generate output suitable for use with a patch
+program</label></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>
+Type of Diff should be a
+<select name="diff_format" onchange="submit()">
+<option value="h" selected>Colored Diff</option>
+<option value="l" >Long Colored Diff</option>
+<option value="u" >Unidiff</option>
+<option value="c" >Context Diff</option>
+<option value="s" >Side by Side</option>
+</select>
+<input type="submit" value=" Get Diffs ">
+</td>
+</tr>
+</table>
+</form>
+
+
+
+<hr noshade>
+<a name=branch></a>
+<form method=GET action="/viewcvs/devel/hula/hula.init">
+<input type="hidden" name="root" value="extras" />
+View only Branch:
+<select name="only_with_tag" onchange="submit()">
+<option value="" selected>Show all branches</option>
+
+<option value="MAIN" >MAIN</option>
+
+</select>
+<input type=submit value=" View Branch ">
+</form>
+
+
+<hr noshade>
+<a name=logsort></a>
+<form method=get action="/viewcvs/devel/hula/hula.init">
+<input type="hidden" name="root" value="extras" />
+Sort log by:
+<select name="logsort" onchange="submit()">
+<option value="cvs" >Not sorted</option>
+<option value="date" selected>Commit date</option>
+<option value="rev" >Revision</option>
+</select>
+<input type=submit value=" Sort ">
+</form>
+
+
+<hr noshade>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td align="left">
+<address>Fedora Project</address><br />
+Powered by <a href="http://viewcvs.sourceforge.net/">ViewCVS 1.0-dev</a>
+</td>
+<td align="right">
+<h3><a target="_blank" href="/viewcvs-doc//help_log.html">ViewCVS and CVS Help</a></h3>
+</td>
+</tr>
+</table>
+</div>
+<div class="fedora-corner-br">&nbsp;</div>
+<div class="fedora-corner-bl">&nbsp;</div>
+</div>
+<!-- content END -->
+<!-- footer BEGIN -->
+<div id="fedora-footer">
+Copyright &copy; 2004 Red Hat, Inc. All rights reserved.
+<br>
+The Fedora Project is not a supported product of Red Hat, Inc.
+<br>
+<a href="http://fedora.redhat.com/legal/">Legal</a> |
+<a href="http://fedora.redhat.com/about/trademarks/">Trademark Guidelines</a>
+</div>
+<!-- footer END -->
+</body>
+</html>
+
