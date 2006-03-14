@@ -77,8 +77,8 @@ if [ "$1" -eq 0 ]; then
 fi
 
 %postun
-/sbin/ldconfig
 if [ "$1" = "0" ]; then
+	/sbin/ldconfig
 	%userremove lula
 fi
 
