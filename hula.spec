@@ -1,15 +1,16 @@
 # TODO
 # - register uid in PLD-doc/uid_gid.db.txt and use it
 Summary:	A calendar and mail server
+Summary(pl):	Serwer kalendarza i poczty
 Name:		hula
 Version:	r1164
 Release:	1
+License:	LGPL
+Group:		Daemons
 Source0:	http://chameleon.mozilla.org/~justdave/hula/%{name}-%{version}.tar.gz
 # Source0-md5:	5a3fd9f490e1f0060668ee1316c27522
 Source1:	%{name}.init
-License:	LGPL
-Group:		Daemons
-URL:		http://www.hula-project.org
+URL:		http://www.hula-project.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
@@ -27,14 +28,25 @@ Hula is a calendar and mail server. The project is focused on building
 a calendar and mail server that people love to use, instead of broadly
 trying to build a "groupware server" that managers want to deploy.
 
+%description -l pl
+Hula to serwer kalendarza i poczty. Projekt ten skupia siê na
+stworzeniu serwera kalendarza i poczty, który ludzie lubiliby u¿ywaæ,
+zamiast próbowaæ stworzyæ "serwer pracy grupowej", który menad¿erowie
+chcieliby wdro¿yæ.
+
 %package devel
 Summary:	Development files for hula
+Summary(pl):	Pliki programistyczne serwera hula
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
-This package contains the header files and libraries for developing
-add-ons for hula.
+This package contains the header files for developing add-ons for
+hula.
+
+%description devel -l pl
+Ten pakiet zawiera pliki nag³ówkowe do tworzenia dodatków dla serwera
+hula.
 
 %prep
 %setup -q
@@ -54,12 +66,15 @@ rm -rf $RPM_BUILD_ROOT
 
 # remove all .la files
 rm -f $RPM_BUILD_ROOT%{_libdir}/connmgr/*.la \
-	    $RPM_BUILD_ROOT%{_libdir}/hulamdb/*.la \
-	    $RPM_BUILD_ROOT%{_libdir}/*.la \
-	    $RPM_BUILD_ROOT%{_libdir}/modweb/*.la
+	$RPM_BUILD_ROOT%{_libdir}/hulamdb/*.la \
+	$RPM_BUILD_ROOT%{_libdir}/*.la \
+	$RPM_BUILD_ROOT%{_libdir}/modweb/*.la
 
 # remove empty or irrelevant doco
 rm -f $RPM_BUILD_ROOT/{ChangeLog,INSTALL,NEWS}
+
+%clean
+rm -rf $RPM_BUILD_ROOT
 
 %pre
 # Create system user for hula
@@ -81,9 +96,6 @@ if [ "$1" = "0" ]; then
 	/sbin/ldconfig
 	%userremove lula
 fi
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
