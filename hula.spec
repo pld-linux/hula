@@ -17,9 +17,11 @@ BuildRequires:	libtool
 BuildRequires:	openssl-devel
 BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,postun):	/sbin/ldconfig
+Requires(post,preun):	/sbin/chkconfig
 Requires(postun):	/usr/sbin/userdel
 Requires(pre):	/bin/id
 Requires(pre):	/usr/sbin/useradd
+Requires:	rc-scripts
 Provides:	user(hula)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -71,7 +73,7 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/connmgr/*.la \
 	$RPM_BUILD_ROOT%{_libdir}/modweb/*.la
 
 # remove empty or irrelevant doco
-rm -f $RPM_BUILD_ROOT/{ChangeLog,INSTALL,NEWS}
+rm $RPM_BUILD_ROOT/{ChangeLog,INSTALL,NEWS}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -86,7 +88,7 @@ rm -rf $RPM_BUILD_ROOT
 /sbin/chkconfig --add hula
 
 %preun
-if [ "$1" -eq 0 ]; then
+if [ "$1" = 0 ]; then
 	%service hula stop
 	/sbin/chkconfig --del hula
 fi
