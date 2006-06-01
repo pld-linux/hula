@@ -1,5 +1,3 @@
-# TODO
-# - register uid in PLD-doc/uid_gid.db.txt and use it
 Summary:	A calendar and mail server
 Summary(pl):	Serwer kalendarza i poczty
 Name:		hula
@@ -80,8 +78,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %pre
 # Create system user for hula
-# TODO: use specific uid
-%useradd -c "Hula" -s /sbin/nologin -r hula
+%useradd -u 171 -c "Hula" -s /sbin/nologin -r hula
 
 %post
 /sbin/ldconfig
