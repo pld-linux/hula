@@ -2,7 +2,7 @@ Summary:	A calendar and mail server
 Summary(pl):	Serwer kalendarza i poczty
 Name:		hula
 Version:	r1164
-Release:	1
+Release:	1.1
 License:	LGPL
 Group:		Daemons
 Source0:	http://chameleon.mozilla.org/~justdave/hula/%{name}-%{version}.tar.gz
@@ -13,13 +13,18 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	openssl-devel
+BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,postun):	/sbin/ldconfig
 Requires(post,preun):	/sbin/chkconfig
+Requires(postun):	/usr/sbin/groupdel
 Requires(postun):	/usr/sbin/userdel
 Requires(pre):	/bin/id
+Requires(pre):	/usr/bin/getgid
+Requires(pre):	/usr/sbin/groupadd
 Requires(pre):	/usr/sbin/useradd
 Requires:	rc-scripts
+Provides:	group(hula)
 Provides:	user(hula)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -70,19 +75,17 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/connmgr/*.la \
 	$RPM_BUILD_ROOT%{_libdir}/*.la \
 	$RPM_BUILD_ROOT%{_libdir}/modweb/*.la
 
-# remove empty or irrelevant doco
-rm $RPM_BUILD_ROOT/{ChangeLog,INSTALL,NEWS}
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %pre
-# Create system user for hula
-%useradd -u 171 -c "Hula" -s /sbin/nologin -r hula
+%groupadd -g 171 hula
+%useradd -u 171 -c "Hula" -g 171 -s /sbin/nologin -r hula
 
 %post
 /sbin/ldconfig
 /sbin/chkconfig --add hula
+%service hula restart
 
 %preun
 if [ "$1" = 0 ]; then
@@ -94,6 +97,7 @@ fi
 if [ "$1" = "0" ]; then
 	/sbin/ldconfig
 	%userremove lula
+	%groupremove lula
 fi
 
 %files
@@ -177,6 +181,51 @@ fi
 %{_libdir}/libwastdobj.so
 %attr(755,root,root) %{_libdir}/libwastdobj.so.0
 %attr(755,root,root) %{_libdir}/libwastdobj.so.0.0.0
+
+%{_libdir}/hula/Hula.Sharp.dll
+%{_libdir}/hula/Hula.Sharp.dll.mdb
+%{_libdir}/hula/HulaIndexer.exe
+%{_libdir}/hula/HulaIndexer.exe.config
+%{_libdir}/hula/HulaIndexer.exe.mdb
+%{_libdir}/hula/HulaWeb.exe
+%{_libdir}/hula/HulaWeb.exe.config
+%{_libdir}/hula/HulaWeb.exe.mdb
+%{_libdir}/hula/Lucene.Net.dll
+%{_libdir}/hula/Mono.WebServer.dll
+%{_libdir}/hula/calcmd/bin/Hula.CalCmd.dll
+%{_libdir}/hula/calcmd/bin/Hula.CalCmd.dll.mdb
+%{_libdir}/hula/calcmd/web.config
+%{_libdir}/hula/dav/bin/Hula.Dav.dll
+%{_libdir}/hula/dav/bin/Hula.Dav.dll.mdb
+%{_libdir}/hula/dav/bin/Lucene.Net.dll
+%{_libdir}/hula/dav/bin/Mono.WebServer.dll
+%{_libdir}/hula/dav/bin/log4net.dll
+%{_libdir}/hula/dav/web.config
+%{_libdir}/hula/hulamonohelper
+%{_libdir}/hula/import/bin/Hula.Import.dll
+%{_libdir}/hula/import/bin/Hula.Import.dll.mdb
+%{_libdir}/hula/import/web.config
+%{_libdir}/hula/log4net.dll
+%{_libdir}/hula/queue/bin/Hula.Queue.dll
+%{_libdir}/hula/queue/bin/Hula.Queue.dll.mdb
+%{_libdir}/hula/queue/web.config
+%{_libdir}/hula/search/bin/Hula.Search.dll
+%{_libdir}/hula/search/bin/Hula.Search.dll.mdb
+%{_libdir}/hula/search/web.config
+%attr(755,root,root) %{_libdir}/libhulacalcmd.so.0.0.0
+%attr(755,root,root) %{_libdir}/libhulalog4c.so.0.0.0
+%attr(755,root,root) %{_libdir}/libical-hula.so.0.0.0
+%attr(755,root,root) %{_libdir}/libicalss-hula.so.0.0.0
+%attr(755,root,root) %{_libdir}/libicalvcal-hula.so.0.0.0
+%attr(755,root,root) %{_sbindir}/hulaadmin
+%attr(755,root,root) %{_sbindir}/hulabackup
+%attr(755,root,root) %{_sbindir}/hulacalcmd
+%attr(755,root,root) %{_sbindir}/hulaindexer
+%attr(755,root,root) %{_sbindir}/hulaqueue
+%attr(755,root,root) %{_sbindir}/hulaweb
+%attr(755,root,root) %{_sbindir}/mdbtool
+%{_datadir}/hula/zoneinfo
+
 
 %files devel
 %defattr(644,root,root,755)
@@ -269,8 +318,6 @@ fi
 %dir %{_libdir}/webadmin
 %{_libdir}/webadmin/9stats.wat
 
-# unpackaged:
-%if 0
 %{_includedir}/hula/calcmd.h
 %{_includedir}/hula/hulaagent.h
 %{_includedir}/hula/hulacheck.h
@@ -338,50 +385,6 @@ fi
 %{_includedir}/hula/log4c/priority.h
 %{_includedir}/hula/log4c/rc.h
 %{_includedir}/hula/log4c/version.h
-%{_libdir}/hula/Hula.Sharp.dll
-%{_libdir}/hula/Hula.Sharp.dll.mdb
-%{_libdir}/hula/HulaIndexer.exe
-%{_libdir}/hula/HulaIndexer.exe.config
-%{_libdir}/hula/HulaIndexer.exe.mdb
-%{_libdir}/hula/HulaWeb.exe
-%{_libdir}/hula/HulaWeb.exe.config
-%{_libdir}/hula/HulaWeb.exe.mdb
-%{_libdir}/hula/Lucene.Net.dll
-%{_libdir}/hula/Mono.WebServer.dll
-%{_libdir}/hula/calcmd/bin/Hula.CalCmd.dll
-%{_libdir}/hula/calcmd/bin/Hula.CalCmd.dll.mdb
-%{_libdir}/hula/calcmd/web.config
-%{_libdir}/hula/dav/bin/Hula.Dav.dll
-%{_libdir}/hula/dav/bin/Hula.Dav.dll.mdb
-%{_libdir}/hula/dav/bin/Lucene.Net.dll
-%{_libdir}/hula/dav/bin/Mono.WebServer.dll
-%{_libdir}/hula/dav/bin/log4net.dll
-%{_libdir}/hula/dav/web.config
-%{_libdir}/hula/hulamonohelper
-%{_libdir}/hula/import/bin/Hula.Import.dll
-%{_libdir}/hula/import/bin/Hula.Import.dll.mdb
-%{_libdir}/hula/import/web.config
-%{_libdir}/hula/log4net.dll
-%{_libdir}/hula/queue/bin/Hula.Queue.dll
-%{_libdir}/hula/queue/bin/Hula.Queue.dll.mdb
-%{_libdir}/hula/queue/web.config
-%{_libdir}/hula/search/bin/Hula.Search.dll
-%{_libdir}/hula/search/bin/Hula.Search.dll.mdb
-%{_libdir}/hula/search/web.config
-%attr(755,root,root) %{_libdir}/libhulacalcmd.so.0.0.0
-%attr(755,root,root) %{_libdir}/libhulalog4c.so.0.0.0
-%attr(755,root,root) %{_libdir}/libical-hula.so.0.0.0
-%attr(755,root,root) %{_libdir}/libicalss-hula.so.0.0.0
-%attr(755,root,root) %{_libdir}/libicalvcal-hula.so.0.0.0
 %{_libdir}/libhulacalcmd.a
 %{_libdir}/libhulalog4c.a
 %{_pkgconfigdir}/hula-sharp.pc
-%attr(755,root,root) %{_sbindir}/hulaadmin
-%attr(755,root,root) %{_sbindir}/hulabackup
-%attr(755,root,root) %{_sbindir}/hulacalcmd
-%attr(755,root,root) %{_sbindir}/hulaindexer
-%attr(755,root,root) %{_sbindir}/hulaqueue
-%attr(755,root,root) %{_sbindir}/hulaweb
-%attr(755,root,root) %{_sbindir}/mdbtool
-%{_datadir}/hula/zoneinfo
-%endif
