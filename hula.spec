@@ -1,3 +1,6 @@
+# TODO:
+# - create -libs (to make -devel installable without server)?
+# - are static modules (%{_libdir}/*/*.a) usable for anything?
 Summary:	A calendar and mail server
 Summary(pl):	Serwer kalendarza i poczty
 Name:		hula
@@ -55,11 +58,15 @@ hula.
 
 %package static
 Summary:	Static libraries for hula
+Summary(pl):	Statyczne biblioteki hula
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static libraries for hula.
+
+%description static -l pl
+Statyczne biblioteki hula.
 
 %prep
 %setup -q
