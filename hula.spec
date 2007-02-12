@@ -2,7 +2,7 @@
 # - create -libs (to make -devel installable without server)?
 # - are static modules (%{_libdir}/*/*.a) usable for anything?
 Summary:	A calendar and mail server
-Summary(pl):	Serwer kalendarza i poczty
+Summary(pl.UTF-8):   Serwer kalendarza i poczty
 Name:		hula
 Version:	r1164
 Release:	1.3
@@ -36,15 +36,15 @@ Hula is a calendar and mail server. The project is focused on building
 a calendar and mail server that people love to use, instead of broadly
 trying to build a "groupware server" that managers want to deploy.
 
-%description -l pl
-Hula to serwer kalendarza i poczty. Projekt ten skupia siê na
-stworzeniu serwera kalendarza i poczty, który ludzie lubiliby u¿ywaæ,
-zamiast próbowaæ stworzyæ "serwer pracy grupowej", który menad¿erowie
-chcieliby wdro¿yæ.
+%description -l pl.UTF-8
+Hula to serwer kalendarza i poczty. Projekt ten skupia siÄ™ na
+stworzeniu serwera kalendarza i poczty, ktÃ³ry ludzie lubiliby uÅ¼ywaÄ‡,
+zamiast prÃ³bowaÄ‡ stworzyÄ‡ "serwer pracy grupowej", ktÃ³ry menadÅ¼erowie
+chcieliby wdroÅ¼yÄ‡.
 
 %package devel
 Summary:	Development files for hula
-Summary(pl):	Pliki programistyczne serwera hula
+Summary(pl.UTF-8):   Pliki programistyczne serwera hula
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -52,20 +52,20 @@ Requires:	%{name} = %{version}-%{release}
 This package contains the header files for developing add-ons for
 hula.
 
-%description devel -l pl
-Ten pakiet zawiera pliki nag³ówkowe do tworzenia dodatków dla serwera
+%description devel -l pl.UTF-8
+Ten pakiet zawiera pliki nagÅ‚Ã³wkowe do tworzenia dodatkÃ³w dla serwera
 hula.
 
 %package static
 Summary:	Static libraries for hula
-Summary(pl):	Statyczne biblioteki hula
+Summary(pl.UTF-8):   Statyczne biblioteki hula
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static libraries for hula.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczne biblioteki hula.
 
 %prep
